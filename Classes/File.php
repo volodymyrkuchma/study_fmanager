@@ -14,7 +14,7 @@ class File extends Entity
         parent::__construct($location);
 
         $data = pathinfo($this->path);
-        $this->name = $data['filename'];
+        $this->name = !empty($data['filename']) ? $data['filename'] : $data['basename'];
         $this->type = strtolower($data['extension']);
     }
 
