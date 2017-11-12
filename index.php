@@ -1,11 +1,13 @@
 <?php
     define('DS', '/');
     require_once "Classes/Entity.php";
+    require_once "Classes/Helper.php";
+    require_once "Classes/FilteredFilelist.php";
     require_once "Classes/File.php";
     require_once "Classes/Folder.php";
 
-    $base = __DIR__;
-    $list = scandir($base);
+    $base = !empty( $_GET['entry'] ) ? urldecode($_GET['entry']) :  __DIR__;
+    $entryFolder = new Folder($base);
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,19 +18,7 @@
 </head>
 <body>
 <div class="uk-container uk-container-center uk-margin-large-top">
-<?php foreach ($list as $item):?>
-    <div><?php
-        $fullPath = $base . DS . $item;
-        $obj = is_file($fullPath)
-            ? new File($fullPath)
-            : new Folder($fullPath);
-
-        if($obj instanceof Entity){
-            $obj->showTeaser();
-        }
-        ?>
-    </div>
-<?php endforeach; ?>
+<?php $entryFolder->showContent(); ?>
 </div>
 </body>
 </html>
