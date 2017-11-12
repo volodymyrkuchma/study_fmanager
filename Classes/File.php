@@ -14,7 +14,8 @@ class File extends Entity
         parent::__construct($location);
 
         $data = pathinfo($this->path);
-        $this->type = $data['extension'];
+        $this->name = $data['filename'];
+        $this->type = strtolower($data['extension']);
     }
 
     /**
@@ -22,7 +23,7 @@ class File extends Entity
      */
     public function showTeaser()
     {
-        echo '<div><b>' . $this->name . '</b></div>';
+        echo '<div><i class="uk-icon-file"></i> ' . $this->name . '</div>';
     }
 
     /**
