@@ -1,5 +1,10 @@
 <?php
 
+namespace Mindk\Files;
+
+use Mindk\Entity;
+use Mindk\Helper;
+
 /**
  * Created by PhpStorm.
  *

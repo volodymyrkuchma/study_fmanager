@@ -1,5 +1,7 @@
 <?php
 
+namespace Mindk;
+
 /**
  * Created by PhpStorm.
  * User: dimmask

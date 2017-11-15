@@ -1,17 +1,19 @@
 <?php
 
+namespace Mindk;
+
 /**
  * Created by PhpStorm.
  * User: dimmask
  * Date: 12.11.17
  * Time: 17:00
  */
-class FilteredFilelist extends FilterIterator
+class FilteredFilelist extends \FilterIterator
 {
 
     public function __construct(array $items)
     {
-        parent::__construct( new ArrayIterator($items) );
+        parent::__construct( new \ArrayIterator($items) );
     }
 
     /**

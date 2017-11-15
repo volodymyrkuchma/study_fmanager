@@ -1,13 +1,13 @@
 <?php
-    define('DS', '/');
-    require_once "Classes/Entity.php";
-    require_once "Classes/Helper.php";
-    require_once "Classes/FilteredFilelist.php";
-    require_once "Classes/File.php";
-    require_once "Classes/Folder.php";
 
-    $base = !empty( $_GET['entry'] ) ? urldecode($_GET['entry']) :  __DIR__;
-    $entryFolder = new Folder($base);
+define('DS', '/');
+
+$loader = require_once 'Classes/Autoloader.php';
+$loader->addNamspacePath('Mindk', __DIR__ . '/Classes/');
+
+$base = !empty( $_GET['entry'] ) ? urldecode($_GET['entry']) :  __DIR__;
+$entryFolder = new \Mindk\Folder($base);
+
 ?>
 <!DOCTYPE html>
 <html>

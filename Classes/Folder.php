@@ -1,5 +1,9 @@
 <?php
 
+namespace Mindk;
+
+use Mindk\Files\File;
+
 /**
  * Created by PhpStorm.
  */
