@@ -11,20 +11,14 @@ class Folder extends Entity
     protected $children;
 
     /**
-     * @var array   Reflection options
-     */
-    protected $config = [];
-
-    /**
      * Folder constructor.
      * @param $location
      */
-    public function __construct($location, $config = []){
+    public function __construct($location){
 
         parent::__construct($location);
 
         $this->name = basename($location);
-        $this->config = $config;
     }
 
     /**
@@ -61,11 +55,6 @@ class Folder extends Entity
      */
     public function showContent(){
         $this->loadContent();
-
-        // Levelup link
-        if(!empty($this->config['levelup_link'])){
-            echo '<a href="index.php?entry='.urlencode(dirname($this->path)).'"><i class="uk-icon-mail-reply-all"></i> ..</a>';
-        }
 
         foreach($this->children as $childNode){
             if($childNode instanceof Entity){
