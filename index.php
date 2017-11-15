@@ -7,7 +7,10 @@
     require_once "Classes/Folder.php";
 
     $base = !empty( $_GET['entry'] ) ? urldecode($_GET['entry']) :  __DIR__;
-    $entryFolder = new Folder($base);
+    $config = [
+        'levelup_link' => ($base != __DIR__)
+    ];
+    $entryFolder = new Folder($base, $config);
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,7 +21,7 @@
 </head>
 <body>
 <div class="uk-container uk-container-center uk-margin-large-top">
-<?php $entryFolder->showContent(); ?>
+    <?php $entryFolder->showContent(); ?>
 </div>
 </body>
 </html>
