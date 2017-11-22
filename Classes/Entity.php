@@ -1,5 +1,7 @@
 <?php
 
+namespace Mindk;
+
 /**
  * Created by PhpStorm.
  * User: dimmask
@@ -17,10 +19,6 @@ abstract class Entity
     public function __construct($location)
     {
         $this->path = $location;
-
-        $data = pathinfo($this->path);
-        $this->name = $data['filename'];
-
         $this->size = filesize($this->path);
     }
 

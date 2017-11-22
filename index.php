@@ -1,29 +1,32 @@
 <?php
-    define('DS', '/');
-    require_once "Classes/Entity.php";
-    require_once "Classes/File.php";
-    require_once "Classes/Folder.php";
 
-    $base = __DIR__;
-    $list = scandir($base);
+define('DS', '/');
+define('ROOT', __DIR__);
+
+// Initialize class autoloader:
+$loader = require_once 'Classes/Autoloader.php';
+$loader->addNamspacePath('Mindk', __DIR__ . '/Classes/');
+
+// Set entry point:
+$base = !empty( $_GET['entry'] ) ? urldecode($_GET['entry']) :  __DIR__;
+$entryFolder = new \Mindk\Folder($base);
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.4/css/uikit.min.css" type="text/css"/>
+    <link rel="stylesheet" href="/assets/css/styles.css" type="text/css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.4/js/uikit.min.js"></script>
 </head>
 <body>
-<?php foreach ($list as $item):?>
-    <div><?php
-        $fullPath = $base . DS . $item;
-        $obj = is_file($fullPath)
-            ? new File($fullPath)
-            : new Folder($fullPath);
-
-        if($obj instanceof Entity){
-            $obj->showTeaser();
-        }
-        ?>
-    </div>
-<?php endforeach; ?>
+<div class="uk-container uk-container-center uk-margin-large-top">
+    <?php if( $base != __DIR__ ): ?>
+    <a href="index.php?entry=<?php echo urlencode(dirname($base)); ?>"><i class="uk-icon-mail-reply-all"></i> ..</a>
+    <?php endif; ?>
+    <?php $entryFolder->showContent(); ?>
+</div>
 </body>
 </html>
