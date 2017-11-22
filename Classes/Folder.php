@@ -51,7 +51,7 @@ class Folder extends Entity
      * Display short file info
      */
     public function showTeaser(){
-        echo '<div><a href="index.php?entry='.urlencode($this->path).'"><i class="uk-icon-folder"></i> '.$this->name.'</a></div>';
+        echo '<div class="tm-teaser"><a href="index.php?entry='.urlencode($this->path).'"><i class="uk-icon-folder"></i> '.$this->name.'</a></div>';
     }
 
     /**

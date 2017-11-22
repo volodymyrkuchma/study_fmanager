@@ -1,10 +1,13 @@
 <?php
 
 define('DS', '/');
+define('ROOT', __DIR__);
 
+// Initialize class autoloader:
 $loader = require_once 'Classes/Autoloader.php';
 $loader->addNamspacePath('Mindk', __DIR__ . '/Classes/');
 
+// Set entry point:
 $base = !empty( $_GET['entry'] ) ? urldecode($_GET['entry']) :  __DIR__;
 $entryFolder = new \Mindk\Folder($base);
 
@@ -13,6 +16,8 @@ $entryFolder = new \Mindk\Folder($base);
 <html>
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.4/css/uikit.min.css" type="text/css"/>
+    <link rel="stylesheet" href="/assets/css/styles.css" type="text/css" />
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.4/js/uikit.min.js"></script>
 </head>
